@@ -1,24 +1,16 @@
 # chars
 
+## Project description
+```
+旋转图谱，节点动效，本地启动之后访问http://localhost:8080/earth可查看图谱效果
+```
+
 ## Project setup
 ```
-yarn install
+npm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn serve
+npm run serve
 ```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
