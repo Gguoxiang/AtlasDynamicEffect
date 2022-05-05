@@ -8,8 +8,14 @@
       <div :class="setClass('ball-r', index + 1)"></div>
       {{item}}
     </div>
-    <div v-for="(item, index) in nodeTwoData" :key="'_' + index" class="ball box" :class="setClass('box', index + 1)" @mouseenter="onHoverFun($event, index, true)" @mouseleave="onHoverFun($event, index, false)">{{item}}</div>
-    <div v-for="(item, index) in nodeThreeData" :key="'__' + index" class="ball three" :class="setClass('three', index + 1)" @mouseenter="onHoverFun($event, index, true)" @mouseleave="onHoverFun($event, index, false)">{{item}}</div>
+    <div v-for="(item, index) in nodeTwoData" :key="'_' + index" class="ball box" :class="setClass('box', index + 1)" @mouseenter="onHoverFun($event, index, true)" @mouseleave="onHoverFun($event, index, false)">
+      <div></div>
+      {{item}}
+    </div>
+    <div v-for="(item, index) in nodeThreeData" :key="'__' + index" class="ball three" :class="setClass('three', index + 1)" @mouseenter="onHoverFun($event, index, true)" @mouseleave="onHoverFun($event, index, false)">
+      <div></div> 
+      {{item}}
+    </div>
     <!-- <div class="ball ball1">1</div>
     <div class="ball ball2">2</div>
     <div class="ball ball3">3</div>
@@ -101,7 +107,8 @@ export default {
     },
     onHoverFun(e, index, isHover){
       console.log(e, index, isHover)
-      console.log($($(e.target)[0]))
+      // console.log($($(e.target)[0]))
+      console.log(document.getElementById('container'))
       
       if (document.getElementById('container').classList.contains('paused')) {
         document.getElementById('container').className = 'container';
@@ -201,13 +208,13 @@ export default {
   }
 }
 .ball-r {
-  width: 50px;
-  height: 50px;
+  width: 100%;
+  height: 100%;
   background-color: #f66;
   border-radius: 50%;
   position: absolute;
-  top: -2px;
-  left: -2px;
+  // top: -2px;
+  // left: -2px;
   animation: ripplesone 1s 0s infinite;
 }
 .container.paused > div {
