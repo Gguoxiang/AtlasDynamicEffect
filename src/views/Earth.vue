@@ -4,12 +4,12 @@
     <div id="lopp2"></div>
     <div id="lopp3"></div>
     <div id="lopp4">center</div>
-    <div v-for="(item, index) in nodeOneData" :key="index" class="ball" :class="setClass('ball', index + 1)" @mouseenter="onHoverFun" @mouseleave="onHoverFun">
+    <div v-for="(item, index) in nodeOneData" :key="index" class="ball" :class="setClass('ball', index + 1)" @mouseenter="onHoverFun($event, index, true)" @mouseleave="onHoverFun($event, index, false)">
       <div :class="setClass('ball-r', index + 1)"></div>
       {{item}}
     </div>
-    <div v-for="(item, index) in nodeTwoData" :key="'_' + index" class="ball box" :class="setClass('box', index + 1)" @mouseenter="onHoverFun" @mouseleave="onHoverFun">{{item}}</div>
-    <div v-for="(item, index) in nodeThreeData" :key="'__' + index" class="ball three" :class="setClass('three', index + 1)" @mouseenter="onHoverFun" @mouseleave="onHoverFun">{{item}}</div>
+    <div v-for="(item, index) in nodeTwoData" :key="'_' + index" class="ball box" :class="setClass('box', index + 1)" @mouseenter="onHoverFun($event, index, true)" @mouseleave="onHoverFun($event, index, false)">{{item}}</div>
+    <div v-for="(item, index) in nodeThreeData" :key="'__' + index" class="ball three" :class="setClass('three', index + 1)" @mouseenter="onHoverFun($event, index, true)" @mouseleave="onHoverFun($event, index, false)">{{item}}</div>
     <!-- <div class="ball ball1">1</div>
     <div class="ball ball2">2</div>
     <div class="ball ball3">3</div>
@@ -99,11 +99,19 @@ export default {
         `
       })
     },
-    onHoverFun(){
+    onHoverFun(e, index, isHover){
+      console.log(e, index, isHover)
+      console.log($($(e.target)[0]))
+      
       if (document.getElementById('container').classList.contains('paused')) {
         document.getElementById('container').className = 'container';
       } else {
         document.getElementById('container').className = 'container paused';
+      }
+      if (e.target.firstChild.classList.contains('ball-r')) {
+        $($(e.target.firstChild)[0]).removeClass("ball-r")
+      } else {
+        $($(e.target.firstChild)[0]).addClass("ball-r")
       }
     }
   }
@@ -192,7 +200,7 @@ export default {
     border: 2px solid #FF3434;
   }
 }
-.ball-r1 {
+.ball-r {
   width: 50px;
   height: 50px;
   background-color: #f66;
@@ -200,7 +208,7 @@ export default {
   position: absolute;
   top: -2px;
   left: -2px;
-  animation: ripplesone 1s 2s infinite;
+  animation: ripplesone 1s 0s infinite;
 }
 .container.paused > div {
   animation-play-state: paused !important;
